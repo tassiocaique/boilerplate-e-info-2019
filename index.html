@@ -5,6 +5,53 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	</head>
 	<body>
-
+		<div id="app" class="container mt-5">
+            <div>
+                <h1>ToDo</h1>
+            </div>
+            <br/>
+            <span>
+                <div>Adicione uma nova tarefa</div>
+                <input
+                    v-model="tarefa"
+                    class="d-flex form-control mb-2"
+                />
+                <button
+                    @click="addTarefa"
+                    class="btn btn-success"
+                >
+                    Adicionar
+                </button>
+            </span>
+            <div  v-if="temTarefaNaoFeita">
+                <h3>Lista de tarefas</h3>
+                <ul>
+                    <li v-for="(item, index) in tarefasNaoFeitas" class="p-2">
+                        <span>{{ item.texto }}</span>
+                        <button
+                            @click="tarefaFeita(index)"
+                            class="btn btn-success"
+                        >
+                            Feita
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div v-if="temTarefaFeita">
+                <h3>Lista de tarefas completas</h3>
+                <ul>
+                    <li v-for="(item, index) in tarefasFeitas" class="p-2">
+                        <span>{{ item.texto}}</span>
+                        <button
+                            class="btn btn-danger"
+                            @click="tarefaNaoFeita(index)"
+                        >
+                            Não Feita
+                        </button>
+                    </li>
+                </ul>
+            </div>
+		</div>
 	</body>
+	<script src="js/index.js"></script>
 </html>
