@@ -1,6 +1,7 @@
 new Vue({
     el: '#app',
     data: {
+        erro: false,
         tarefa: '',
         tarefasFeitas: JSON.parse(window.localStorage.getItem('tarefas-feitas')),
         tarefasNaoFeitas: JSON.parse(window.localStorage.getItem('tarefas-nao-feitas')),
@@ -15,15 +16,20 @@ new Vue({
     },
     methods: {
         addTarefa() {
-            var obj = {
-                texto: this.tarefa,
-            };
-            if(this.tarefasNaoFeitas === null) {
-                this.tarefasNaoFeitas = [];
+            if(this.tarefa.length > 0) {
+                var obj = {
+                    texto: this.tarefa,
+                };
+                if(this.tarefasNaoFeitas === null) {
+                    this.tarefasNaoFeitas = [];
+                }
+                this.tarefasNaoFeitas.push(obj);
+                window.localStorage.setItem('tarefas-nao-feitas', JSON.stringify(this.tarefasNaoFeitas));                    
+                this.tarefa = '';
+                this.erro = false;
+            } else {
+                this.erro = true;
             }
-            this.tarefasNaoFeitas.push(obj);
-            window.localStorage.setItem('tarefas-nao-feitas', JSON.stringify(this.tarefasNaoFeitas));                    
-            this.tarefa = '';
         },
         tarefaFeita(index) {
             if(this.tarefasFeitas === null) {
