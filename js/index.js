@@ -56,6 +56,9 @@ new Vue({
             window.localStorage.setItem('tarefas-nao-feitas', JSON.stringify(this.tarefasNaoFeitas));
             window.localStorage.setItem('tarefas-feitas', JSON.stringify(this.tarefasFeitas));
         },
-        deletar(index) {},
+        deletar(index, lista) {
+            this[lista] = this[lista].filter((item, i) => index !== i);
+            this.saveTarefas();
+        },
     }
 });

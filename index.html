@@ -37,7 +37,13 @@
                             @click="tarefaFeita(index)"
                             class="btn btn-success"
                         >
-                            Feita
+                            Marcar como feita
+                        </button>
+                        <button
+                            @click="deletar(index, 'tarefasNaoFeitas')"
+                            class="btn btn-danger ml-2"
+                        >
+                            Excluir
                         </button>
                     </li>
                 </ul>
@@ -48,10 +54,16 @@
                     <li v-for="(item, index) in tarefasFeitas" class="p-2">
                         <span>{{ item.texto}}</span>
                         <button
-                            class="btn btn-danger"
+                            class="btn btn-warning"
                             @click="tarefaNaoFeita(index)"
                         >
-                            Não Feita
+                            Marcar como não feita
+                        </button>
+                        <button
+                            @click="deletar(index, 'tarefasFeitas')"
+                            class="btn btn-danger ml-2"
+                        >
+                            Excluir
                         </button>
                     </li>
                 </ul>
