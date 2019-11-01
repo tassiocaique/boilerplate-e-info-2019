@@ -16,6 +16,11 @@
                     v-model="tarefa"
                     class="d-flex form-control mb-2"
                 />
+                <div v-if="erro && tarefa.length == 0" class="p-2">
+                    <small class="text-danger">
+                        Você precisa informar uma tarefa
+                    </small>
+                </div>
                 <button
                     @click="addTarefa"
                     class="btn btn-success"
